@@ -6,6 +6,7 @@
 		stage float3 SunDirection;
 		stage float3 SunIlluminance;
 		stage float SunLuminanceFactor;
+		stage float SunSize;
 
 		stage float4x4 InvViewProjectionMatrix;
 		stage float3 CameraPositionWS;

@@ -614,6 +614,7 @@ namespace TR.Stride.Atmosphere
             parameters.Set(AtmosphereCommonKeys.RayMarchMinMaxSPP.TryComposeWith(compositionName), new Vector2(4, 14));
             parameters.Set(AtmosphereCommonKeys.SunIlluminance.TryComposeWith(compositionName), new Vector3(sunColor.R, sunColor.G, sunColor.B));
             parameters.Set(AtmosphereCommonKeys.SunLuminanceFactor.TryComposeWith(compositionName), component.SunLuminanceFactor);
+            parameters.Set(AtmosphereCommonKeys.SunSize.TryComposeWith(compositionName), component.SunSize);
             parameters.Set(AtmosphereCommonKeys.RenderStage, 0);
             parameters.Set(AtmosphereRenderSkyRayMarchingKeys.Exposure, component.Exposure);
 

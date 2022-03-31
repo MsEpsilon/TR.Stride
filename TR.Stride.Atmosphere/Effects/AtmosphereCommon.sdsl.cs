@@ -21,6 +21,7 @@ namespace Stride.Rendering
         public static readonly ValueParameterKey<Vector3> SunDirection = ParameterKeys.NewValue<Vector3>();
         public static readonly ValueParameterKey<Vector3> SunIlluminance = ParameterKeys.NewValue<Vector3>();
         public static readonly ValueParameterKey<float> SunLuminanceFactor = ParameterKeys.NewValue<float>();
+        public static readonly ValueParameterKey<float> SunSize = ParameterKeys.NewValue<float>();
         public static readonly ValueParameterKey<Matrix> InvViewProjectionMatrix = ParameterKeys.NewValue<Matrix>();
         public static readonly ValueParameterKey<Vector3> CameraPositionWS = ParameterKeys.NewValue<Vector3>();
         public static readonly ValueParameterKey<Vector2> Resolution = ParameterKeys.NewValue<Vector2>();
