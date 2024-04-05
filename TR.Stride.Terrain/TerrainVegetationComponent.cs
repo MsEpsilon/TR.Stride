@@ -28,6 +28,18 @@ namespace TR.Stride.Terrain
         private TerrainComponent _terrain;
         [DataMember(10)] public TerrainComponent Terrain { get { return _terrain; } set { _terrain = value; IsDirty = true; } }
 
+        private Texture _mask;
+        /// <summary>
+        /// Mask to use when randomly placing instances
+        /// </summary>
+        [DataMember(30)] public Texture Mask { get { return _mask; } set { _mask = value; IsDirty = true; } }
+
+        private ColorChannel _maskChannel;
+        /// <summary>
+        /// Channel of the mask texture to use for placement
+        /// </summary>
+        [DataMember(40), DefaultValue(ColorChannel.R)] public ColorChannel MaskChannel { get { return _maskChannel; } set { _maskChannel = value; IsDirty = true; } }
+
         private float _density = 1.0f;
         [DataMember(50), DefaultValue(1.0f)] public float Density { get { return _density; } set { _density = value; IsDirty = true; } }
 

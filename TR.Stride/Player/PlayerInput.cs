@@ -1,5 +1,6 @@
 ﻿using System.Collections.Generic;
 using System.Linq;
+using ImGuiNET;
 using Stride.Core.Mathematics;
 using Stride.Engine;
 using Stride.Engine.Events;
@@ -97,7 +98,7 @@ namespace TR.Stride.Player
                     cameraDirection.Normalize();
 
                 // Mouse-based camera rotation. Only enabled after you click the screen to lock your cursor, pressing escape cancels this
-                if (Input.IsMouseButtonDown(MouseButton.Left))
+                if (Input.IsMouseButtonDown(MouseButton.Left) && !ImGui.GetIO().WantCaptureMouse)
                 {
                     Input.LockMousePosition(true);
                     Game.IsMouseVisible = false;

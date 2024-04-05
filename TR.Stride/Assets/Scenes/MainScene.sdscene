@@ -14,7 +14,27 @@ Hierarchy:
         - ref!! 48ba5f73-01a5-48cb-963e-c198f6227281
         - ref!! 9b2dfd34-b806-49bc-8dc7-25f759391414
         - ref!! 5dae2563-514b-4f65-b460-2321c61c1ff6
+        - ref!! 2e2a6a3c-a583-4c6e-b092-2b98c21974e1
+        - ref!! ca0dad86-f686-4db6-965c-8ac3dd2c48a1
+        - ref!! 23685840-18a5-40bc-9805-21754c636873
+        - ref!! fd20bcc1-c974-4fc7-b27c-8ec111b98be2
+        - ref!! 61128ef5-497e-4a7a-acbd-30a61f1573fa
     Parts:
+        -   Folder: null
+            Entity:
+                Id: 23685840-18a5-40bc-9805-21754c636873
+                Name: Cube
+                Components:
+                    089f26dfd91b2f0e3f1e03558504c09c: !TransformComponent
+                        Id: d8e163b5-aecc-4130-aae6-2743f4b1df1c
+                        Position: {X: 70.27652, Y: 130.71475, Z: -469.08453}
+                        Rotation: {X: 0.0, Y: 0.70770645, Z: 0.0, W: 0.7065066}
+                        Scale: {X: 1.0, Y: 1.7462304, Z: 1.0}
+                        Children: {}
+                    dd71cda6941961bac30f48318f221ce3: !ModelComponent
+                        Id: adc8d054-7a98-4303-8232-c60535eb2383
+                        Model: 8f0b2af3-e6f7-4c03-b65c-4d2f0b60901a:Cube
+                        Materials: {}
         -   Entity:
                 Id: 26cdafcf-427b-454b-bb17-00ace7b05a42
                 Name: Camera
@@ -42,6 +62,20 @@ Hierarchy:
                         InvertY: false
                         RotationSpeed: 360.0
                         VerticalSpeed: 65.0
+        -   Entity:
+                Id: 2e2a6a3c-a583-4c6e-b092-2b98c21974e1
+                Name: Cube
+                Components:
+                    089f26dfd91b2f0e3f1e03558504c09c: !TransformComponent
+                        Id: caec3711-640e-4ab8-8620-c22dd23ed80d
+                        Position: {X: 74.75924, Y: 131.15292, Z: -474.4631}
+                        Rotation: {X: 0.0, Y: 0.0, Z: 0.0, W: 1.0}
+                        Scale: {X: 1.0, Y: 1.0, Z: 1.0}
+                        Children: {}
+                    dd71cda6941961bac30f48318f221ce3: !ModelComponent
+                        Id: 67b0cca8-8048-4bd2-8cb1-ed7d0a4dd3d0
+                        Model: 8f0b2af3-e6f7-4c03-b65c-4d2f0b60901a:Cube
+                        Materials: {}
         -   Entity:
                 Id: 48ba5f73-01a5-48cb-963e-c198f6227281
                 Name: Sphere
@@ -95,7 +129,7 @@ Hierarchy:
                     6ccd660d13d99e9b55ac02402a3d43ea: !TransformComponent
                         Id: 251c7921-c618-4806-b003-da21db30be29
                         Position: {X: 0.0, Y: 128.0, Z: 0.0}
-                        Rotation: {X: -0.017443828, Y: 0.124925405, Z: -0.015550619, W: 0.9918908}
+                        Rotation: {X: -0.19470197, Y: 0.1201245, Z: -0.037660055, W: 0.9727502}
                         Scale: {X: 1.0, Y: 1.0, Z: 1.0}
                         Children: {}
                     3c7b800cd00ed3e48b50efcdab0505b5: !LightComponent
@@ -193,6 +227,21 @@ Hierarchy:
                                 Radius: 0.4
                                 LocalOffset: {X: 0.0, Y: 0.95, Z: 0.0}
                                 LocalRotation: {X: 0.0, Y: 0.0, Z: 0.0, W: 1.0}
+        -   Folder: null
+            Entity:
+                Id: 61128ef5-497e-4a7a-acbd-30a61f1573fa
+                Name: Cube
+                Components:
+                    089f26dfd91b2f0e3f1e03558504c09c: !TransformComponent
+                        Id: 853a18fa-cc34-4c3b-a88e-3056265a8e86
+                        Position: {X: 74.75924, Y: 134.14975, Z: -467.6361}
+                        Rotation: {X: 0.0, Y: 0.0, Z: 0.0, W: 1.0}
+                        Scale: {X: 1.0, Y: 1.0, Z: 15.2449045}
+                        Children: {}
+                    dd71cda6941961bac30f48318f221ce3: !ModelComponent
+                        Id: 62034a5e-0c4b-414d-a2b8-8deea1b537dd
+                        Model: 8f0b2af3-e6f7-4c03-b65c-4d2f0b60901a:Cube
+                        Materials: {}
         -   Entity:
                 Id: 9b2dfd34-b806-49bc-8dc7-25f759391414
                 Name: Ocean
@@ -203,13 +252,13 @@ Hierarchy:
                         Rotation: {X: 0.0, Y: 0.0, Z: 0.0, W: 1.0}
                         Scale: {X: 1.0, Y: 1.0, Z: 1.0}
                         Children: {}
-                    985aa7b0c54656baf3e6d03eb86b2942: !TR.Stride.Ocean.OceanComponent,TR.Stride.Ocean
-                        Id: aa8de90b-ef53-4767-9e01-6d4688424982
+                    aba0b64ec8dc140b3c68d325dc527cfc: !TR.Stride.Ocean.OceanComponent,TR.Stride.Ocean
+                        Id: b75fef82-cb61-465c-b5b6-21f8e9a66f97
                         WavesSettings:
                             Local:
                                 Scale: 1.0
                                 WindSpeed: 0.5
-                                WindDirection: 60.0
+                                WindDirection: 90.0
                                 Fetch: 100000.0
                                 SpreadBlend: 1.0
                                 Swell: 0.2
@@ -217,26 +266,23 @@ Hierarchy:
                                 ShortWavesFade: 0.01
                             Swell:
                                 Scale: 0.0
-                                WindSpeed: 0.5
+                                WindSpeed: 1.0
                                 WindDirection: 0.0
                                 Fetch: 300000.0
                                 SpreadBlend: 1.0
                                 Swell: 1.0
                                 PeakEnhancement: 3.3
                                 ShortWavesFade: 0.01
-                        LengthScale2: 6.0
-                        AlwaysRecalculateInitials: true
+                        AlwaysRecalculateInitials: false
                         Material: !TR.Stride.Ocean.DefaultOceanMaterial,TR.Stride.Ocean
-                            LodScale: 6.0
-                            SSSColor: {R: 0.08235294, G: 0.3254902, B: 0.36078432, A: 1.0}
+                            SSSColor: {R: 0.1541919, G: 0.8857628, B: 0.990566, A: 1.0}
                             FoamColor: {R: 1.0, G: 1.0, B: 1.0, A: 1.0}
                             ContactFoam: 1.0
-                            FoamTexture: 14d96665-4850-4a11-8fe7-2478998bd73b:FoamTexture
-                            Roughness: 0.3082
+                            FoamTexture: null
                             Color: {R: 0.03457636, G: 0.1229746, B: 0.1981132}
-                            ShoreColor: {R: 0.2, G: 0.13375, B: 0.13375}
+                            ShoreColor: {R: 0.03457636, G: 0.1229746, B: 0.1981132}
                             RefractionStrength: 50.0
-                            Sun: ref!! 1b0ce0b4-87f4-4f93-bb66-24a5a4f12eaa
+                            Sun: null
                         Mesh: !TR.Stride.Ocean.DefaultOceanMesh,TR.Stride.Ocean {}
         -   Folder: Atmosphere
             Entity:
@@ -271,18 +317,34 @@ Hierarchy:
                         AbsorptionDensity1LinearTerm: -0.06666667
                         RayleighScaleHeight: 8.0
                         MieScaleHeight: 1.2
-                        GroundAlbedo: {R: 0.1125, G: 0.1125, B: 0.1125}
+                        GroundAlbedo: {R: 0.0875, G: 0.0875, B: 0.0875}
                         SunLuminanceFactor: 50000.0
+                        SunSize: 0.99996
                         RenderSunDisk: true
-                        AerialPerspectiveDistanceScale: 100.0
+                        AerialPerspectiveDistanceScale: 1.0
                         StrideToAtmosphereUnitScale: 0.001
-                        MultipleScatteringFactor: 1.0
+                        MultipleScatteringFactor: 2.0
                         AtmosphereScatteringVolumeKmPerSlice: 0.25
                         Exposure: 1.0
-                        EnableClouds: false
+                        EnableClouds: true
                         CloudScale: 0.0001
                         CloudSpeed: 0.01
                         Cloudiness: 0.8
+        -   Folder: null
+            Entity:
+                Id: ca0dad86-f686-4db6-965c-8ac3dd2c48a1
+                Name: Cube
+                Components:
+                    089f26dfd91b2f0e3f1e03558504c09c: !TransformComponent
+                        Id: 331e28cc-5d8b-4cbd-ba67-414c65e0a605
+                        Position: {X: 79.35254, Y: 130.71475, Z: -469.09995}
+                        Rotation: {X: 0.0, Y: 0.70770645, Z: 0.0, W: 0.7065066}
+                        Scale: {X: 1.0, Y: 1.7462304, Z: 1.0}
+                        Children: {}
+                    dd71cda6941961bac30f48318f221ce3: !ModelComponent
+                        Id: 0e22b099-c0ef-43bd-b586-a55a482f5d79
+                        Model: 8f0b2af3-e6f7-4c03-b65c-4d2f0b60901a:Cube
+                        Materials: {}
         -   Folder: Atmosphere
             Entity:
                 Id: cdeaa5bf-6c96-4a88-90ad-f71f364f66d5
@@ -325,3 +387,18 @@ Hierarchy:
                         Scale: {X: 1.0, Y: 1.0, Z: 1.0}
                         Children:
                             88c080ecdaa8193391091dd10843668c: ref!! cf510d5b-aacf-45f0-805b-48734d043a40
+        -   Folder: null
+            Entity:
+                Id: fd20bcc1-c974-4fc7-b27c-8ec111b98be2
+                Name: Cube
+                Components:
+                    089f26dfd91b2f0e3f1e03558504c09c: !TransformComponent
+                        Id: d4fb5982-a698-42bd-8b00-3852982d7279
+                        Position: {X: 74.75924, Y: 129.67317, Z: -467.6361}
+                        Rotation: {X: 0.0, Y: 0.0, Z: 0.0, W: 1.0}
+                        Scale: {X: 1.0, Y: 1.0, Z: 1.0}
+                        Children: {}
+                    dd71cda6941961bac30f48318f221ce3: !ModelComponent
+                        Id: d5ca6538-2824-478d-b08e-36d5cbbe2ab8
+                        Model: 8f0b2af3-e6f7-4c03-b65c-4d2f0b60901a:Cube
+                        Materials: {}

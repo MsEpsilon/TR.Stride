@@ -1,0 +1,10 @@
+!Texture
+Id: e7ad5a63-5ba2-45a9-a339-d2c1072b10d8
+SerializedVersion: {Stride: 2.0.0.0}
+Tags: []
+Source: !file ../Resources/WeatherTexture.tga
+IsCompressed: false
+Type: !ColorTextureType
+    UseSRgbSampling: false
+    ColorKeyColor: {R: 255, G: 0, B: 255, A: 255}
+IsStreamable: false

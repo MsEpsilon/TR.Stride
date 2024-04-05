@@ -14,97 +14,147 @@ using Stride.Shaders;
 using Stride.Core.Mathematics;
 using Buffer = Stride.Graphics.Buffer;
 
-[DataContract]public partial class AtmosphereParameters : ShaderMixinParameters
+namespace TR.Stride.Atmosphere
 {
-    public static readonly PermutationParameterKey<bool> FastSkyEnabled = ParameterKeys.NewPermutation<bool>(false);
-    public static readonly PermutationParameterKey<bool> FastAerialPerspectiveEnabled = ParameterKeys.NewPermutation<bool>(false);
-    public static readonly PermutationParameterKey<bool> RenderSunDisk = ParameterKeys.NewPermutation<bool>(true);
-    public static readonly PermutationParameterKey<bool> MultiScatteringApproximationEnabled = ParameterKeys.NewPermutation<bool>(true);
-    public static readonly PermutationParameterKey<bool> EnableClouds = ParameterKeys.NewPermutation<bool>(true);
-    public static readonly PermutationParameterKey<string> AtmosphereGroup = ParameterKeys.NewPermutation<string>("PerDraw.Atmosphere");
-};
-internal static partial class ShaderMixins
-{
-    internal partial class AtmosphereRenderSkyRayMarchingEffect  : IShaderMixinBuilder
+    [DataContract]public partial class AtmosphereParameters : ShaderMixinParameters
     {
-        public void Generate(ShaderMixinSource mixin, ShaderMixinContext context)
+        public static readonly PermutationParameterKey<bool> RenderSunDisk = ParameterKeys.NewPermutation<bool>(true);
+        public static readonly PermutationParameterKey<string> AtmosphereGroup = ParameterKeys.NewPermutation<string>("PerDraw.Atmosphere");
+    };
+    internal static partial class ShaderMixins
+    {
+        internal partial class AtmosphereRenderSkyRayMarchingEffect  : IShaderMixinBuilder
         {
-            context.Mixin(mixin, "AtmosphereRenderSkyRayMarching", context.GetParam(AtmosphereParameters.FastSkyEnabled), context.GetParam(AtmosphereParameters.FastAerialPerspectiveEnabled), context.GetParam(AtmosphereParameters.RenderSunDisk), context.GetParam(AtmosphereParameters.MultiScatteringApproximationEnabled), context.GetParam(AtmosphereParameters.EnableClouds), context.GetParam(AtmosphereParameters.AtmosphereGroup));
-        }
+            public void Generate(ShaderMixinSource mixin, ShaderMixinContext context)
+            {
+                context.Mixin(mixin, "AtmosphereRenderSkyRayMarching", context.GetParam(AtmosphereParameters.RenderSunDisk), context.GetParam(AtmosphereParameters.AtmosphereGroup));
+            }
 
-        [ModuleInitializer]
-        internal static void __Initialize__()
+            [ModuleInitializer]
+            internal static void __Initialize__()
 
-        {
-            ShaderMixinManager.Register("AtmosphereRenderSkyRayMarchingEffect", new AtmosphereRenderSkyRayMarchingEffect());
+            {
+                ShaderMixinManager.Register("AtmosphereRenderSkyRayMarchingEffect", new AtmosphereRenderSkyRayMarchingEffect());
+            }
         }
     }
-}
-internal static partial class ShaderMixins
-{
-    internal partial class AtmosphereRenderTransmittanceLutEffect  : IShaderMixinBuilder
+    internal static partial class ShaderMixins
     {
-        public void Generate(ShaderMixinSource mixin, ShaderMixinContext context)
+        internal partial class AtmosphereRenderTransmittanceLutEffect  : IShaderMixinBuilder
         {
-            context.Mixin(mixin, "AtmosphereRenderTransmittanceLut", context.GetParam(AtmosphereParameters.MultiScatteringApproximationEnabled), context.GetParam(AtmosphereParameters.AtmosphereGroup));
-        }
+            public void Generate(ShaderMixinSource mixin, ShaderMixinContext context)
+            {
+                context.Mixin(mixin, "AtmosphereRenderTransmittanceLut", context.GetParam(AtmosphereParameters.AtmosphereGroup));
+            }
 
-        [ModuleInitializer]
-        internal static void __Initialize__()
+            [ModuleInitializer]
+            internal static void __Initialize__()
 
-        {
-            ShaderMixinManager.Register("AtmosphereRenderTransmittanceLutEffect", new AtmosphereRenderTransmittanceLutEffect());
+            {
+                ShaderMixinManager.Register("AtmosphereRenderTransmittanceLutEffect", new AtmosphereRenderTransmittanceLutEffect());
+            }
         }
     }
-}
-internal static partial class ShaderMixins
-{
-    internal partial class AtmosphereMultipleScatteringTextureEffect  : IShaderMixinBuilder
+    internal static partial class ShaderMixins
     {
-        public void Generate(ShaderMixinSource mixin, ShaderMixinContext context)
+        internal partial class AtmosphereMultipleScatteringTextureEffect  : IShaderMixinBuilder
         {
-            context.Mixin(mixin, "AtmosphereMultipleScatteringTextureEffectCS", context.GetParam(AtmosphereParameters.MultiScatteringApproximationEnabled), context.GetParam(AtmosphereParameters.AtmosphereGroup));
-        }
+            public void Generate(ShaderMixinSource mixin, ShaderMixinContext context)
+            {
+                context.Mixin(mixin, "AtmosphereMultipleScatteringTextureEffectCS", context.GetParam(AtmosphereParameters.AtmosphereGroup));
+            }
 
-        [ModuleInitializer]
-        internal static void __Initialize__()
+            [ModuleInitializer]
+            internal static void __Initialize__()
 
-        {
-            ShaderMixinManager.Register("AtmosphereMultipleScatteringTextureEffect", new AtmosphereMultipleScatteringTextureEffect());
+            {
+                ShaderMixinManager.Register("AtmosphereMultipleScatteringTextureEffect", new AtmosphereMultipleScatteringTextureEffect());
+            }
         }
     }
-}
-internal static partial class ShaderMixins
-{
-    internal partial class AtmosphereRenderSkyViewLutEffect  : IShaderMixinBuilder
+    internal static partial class ShaderMixins
     {
-        public void Generate(ShaderMixinSource mixin, ShaderMixinContext context)
+        internal partial class AtmosphereRenderSkyViewLutEffect  : IShaderMixinBuilder
         {
-            context.Mixin(mixin, "AtmosphereRenderSkyViewLut", context.GetParam(AtmosphereParameters.MultiScatteringApproximationEnabled), context.GetParam(AtmosphereParameters.AtmosphereGroup));
-        }
+            public void Generate(ShaderMixinSource mixin, ShaderMixinContext context)
+            {
+                context.Mixin(mixin, "AtmosphereRenderSkyViewLut", context.GetParam(AtmosphereParameters.AtmosphereGroup));
+            }
 
-        [ModuleInitializer]
-        internal static void __Initialize__()
+            [ModuleInitializer]
+            internal static void __Initialize__()
 
-        {
-            ShaderMixinManager.Register("AtmosphereRenderSkyViewLutEffect", new AtmosphereRenderSkyViewLutEffect());
+            {
+                ShaderMixinManager.Register("AtmosphereRenderSkyViewLutEffect", new AtmosphereRenderSkyViewLutEffect());
+            }
         }
     }
-}
-internal static partial class ShaderMixins
-{
-    internal partial class AtmosphereRenderScatteringCameraVolumeEffect  : IShaderMixinBuilder
+    internal static partial class ShaderMixins
     {
-        public void Generate(ShaderMixinSource mixin, ShaderMixinContext context)
+        internal partial class AtmosphereRenderScatteringCameraVolumeEffect  : IShaderMixinBuilder
         {
-            context.Mixin(mixin, "AtmosphereRenderScatteringCameraVolume", context.GetParam(AtmosphereParameters.MultiScatteringApproximationEnabled), context.GetParam(AtmosphereParameters.AtmosphereGroup));
+            public void Generate(ShaderMixinSource mixin, ShaderMixinContext context)
+            {
+                context.Mixin(mixin, "AtmosphereRenderScatteringCameraVolume", context.GetParam(AtmosphereParameters.AtmosphereGroup));
+            }
+
+            [ModuleInitializer]
+            internal static void __Initialize__()
+
+            {
+                ShaderMixinManager.Register("AtmosphereRenderScatteringCameraVolumeEffect", new AtmosphereRenderScatteringCameraVolumeEffect());
+            }
         }
-
-        [ModuleInitializer]
-        internal static void __Initialize__()
-
+    }
+    internal static partial class ShaderMixins
+    {
+        internal partial class CloudRayMarchingEffect  : IShaderMixinBuilder
         {
-            ShaderMixinManager.Register("AtmosphereRenderScatteringCameraVolumeEffect", new AtmosphereRenderScatteringCameraVolumeEffect());
+            public void Generate(ShaderMixinSource mixin, ShaderMixinContext context)
+            {
+                context.Mixin(mixin, "CloudRayMarching", context.GetParam(AtmosphereParameters.AtmosphereGroup));
+            }
+
+            [ModuleInitializer]
+            internal static void __Initialize__()
+
+            {
+                ShaderMixinManager.Register("CloudRayMarchingEffect", new CloudRayMarchingEffect());
+            }
+        }
+    }
+    internal static partial class ShaderMixins
+    {
+        internal partial class CloudBasicNoiseEffect  : IShaderMixinBuilder
+        {
+            public void Generate(ShaderMixinSource mixin, ShaderMixinContext context)
+            {
+                context.Mixin(mixin, "CloudBasicNoise");
+            }
+
+            [ModuleInitializer]
+            internal static void __Initialize__()
+
+            {
+                ShaderMixinManager.Register("CloudBasicNoiseEffect", new CloudBasicNoiseEffect());
+            }
+        }
+    }
+    internal static partial class ShaderMixins
+    {
+        internal partial class CloudDetailNoiseEffect  : IShaderMixinBuilder
+        {
+            public void Generate(ShaderMixinSource mixin, ShaderMixinContext context)
+            {
+                context.Mixin(mixin, "CloudDetailNoise");
+            }
+
+            [ModuleInitializer]
+            internal static void __Initialize__()
+
+            {
+                ShaderMixinManager.Register("CloudDetailNoiseEffect", new CloudDetailNoiseEffect());
+            }
         }
     }
 }

@@ -7,7 +7,7 @@ namespace TR.Stride.Ocean
         stage RWTexture2D<float4> WavesData;
         stage RWTexture2D<float2> H0K;
 
-        stage Texture2D<float2> Noise;
+        stage Texture2D<float2> NoiseTexture;
 
         stage uint Size;
         stage float LengthScale;

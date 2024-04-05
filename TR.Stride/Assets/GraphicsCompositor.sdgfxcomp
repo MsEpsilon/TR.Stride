@@ -141,6 +141,9 @@ RenderFeatures:
         FastSky: true
         FastAerialPerspectiveEnabled: true
         DrawDebugTextures: false
+        CloudCurlNoiseTexture: 9b04e3bc-0b31-4d31-9053-d532fa28954b:Noise
+        CloudBlueNoiseTexture: ad8c3b0d-aadf-4aed-8291-5a0b5ebdebb7:BlueNoise
+        WeatherTexture: e7ad5a63-5ba2-45a9-a339-d2c1072b10d8:WeatherTexture
 SharedRenderers:
     60459475d3a3adaf2d1ba5d99913ca75: !Stride.Rendering.Compositing.ForwardRenderer,Stride.Engine
         Id: 9cf51cec-34b2-4b2b-8609-816bc58fd23b

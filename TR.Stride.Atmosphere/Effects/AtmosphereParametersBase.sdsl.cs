@@ -14,7 +14,7 @@ using Stride.Shaders;
 using Stride.Core.Mathematics;
 using Buffer = Stride.Graphics.Buffer;
 
-namespace Stride.Rendering
+namespace TR.Stride.Atmosphere
 {
     public static partial class AtmosphereParametersBaseKeys
     {
@@ -45,6 +45,7 @@ namespace Stride.Rendering
         public static readonly ObjectParameterKey<Texture> SkyViewLutTexture = ParameterKeys.NewObject<Texture>();
         public static readonly ObjectParameterKey<Texture> MultiScatTexture = ParameterKeys.NewObject<Texture>();
         public static readonly ObjectParameterKey<Texture> AtmosphereCameraScatteringVolume = ParameterKeys.NewObject<Texture>();
+        public static readonly ObjectParameterKey<Texture> CloudsTexture = ParameterKeys.NewObject<Texture>();
         public static readonly ObjectParameterKey<SamplerState> samplerLinearClamp = ParameterKeys.NewObject<SamplerState>();
     }
 }

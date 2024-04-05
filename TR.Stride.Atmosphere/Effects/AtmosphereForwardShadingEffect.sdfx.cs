@@ -14,26 +14,29 @@ using Stride.Shaders;
 using Stride.Core.Mathematics;
 using Buffer = Stride.Graphics.Buffer;
 
-[DataContract]public partial class AtmosphereForwardShadingEffectParameters : ShaderMixinParameters
+namespace TR.Stride.Atmosphere
 {
-    public static readonly PermutationParameterKey<bool> RenderAerialPerspective = ParameterKeys.NewPermutation<bool>(false);
-};
-internal static partial class ShaderMixins
-{
-    internal partial class AtmosphereForwardShadingEffect  : IShaderMixinBuilder
+    [DataContract]public partial class AtmosphereForwardShadingEffectParameters : ShaderMixinParameters
     {
-        public void Generate(ShaderMixinSource mixin, ShaderMixinContext context)
+        public static readonly PermutationParameterKey<bool> RenderAerialPerspective = ParameterKeys.NewPermutation<bool>(false);
+    };
+    internal static partial class ShaderMixins
+    {
+        internal partial class AtmosphereForwardShadingEffect  : IShaderMixinBuilder
         {
-            context.Mixin(mixin, "StrideForwardShadingEffect");
-            if (context.GetParam(AtmosphereForwardShadingEffectParameters.RenderAerialPerspective))
-                context.Mixin(mixin, "AtmosphereForwardRender");
-        }
+            public void Generate(ShaderMixinSource mixin, ShaderMixinContext context)
+            {
+                context.Mixin(mixin, "StrideForwardShadingEffect");
+                if (context.GetParam(AtmosphereForwardShadingEffectParameters.RenderAerialPerspective))
+                    context.Mixin(mixin, "AtmosphereForwardRender");
+            }
 
-        [ModuleInitializer]
-        internal static void __Initialize__()
+            [ModuleInitializer]
+            internal static void __Initialize__()
 
-        {
-            ShaderMixinManager.Register("AtmosphereForwardShadingEffect", new AtmosphereForwardShadingEffect());
+            {
+                ShaderMixinManager.Register("AtmosphereForwardShadingEffect", new AtmosphereForwardShadingEffect());
+            }
         }
     }
 }

@@ -1,19 +1,17 @@
-﻿using Stride.Core;
-using Stride.Core.Annotations;
+﻿using FFmpeg.AutoGen;
+using ImGuiNET;
+using Stride.Core;
+using Stride.Core.Diagnostics;
 using Stride.Core.Mathematics;
 using Stride.Engine;
 using Stride.Engine.Design;
-using Stride.Graphics;
-using Stride.Input;
 using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Text;
+using System.Globalization;
 
 namespace TR.Stride.Atmosphere
 {
     [DataContract, DefaultEntityComponentRenderer(typeof(AtmosphereEntityProcessor))]
-    public class AtmosphereComponent : ScriptComponent
+    public class AtmosphereComponent : SyncScript
     {
         [DataMember(0)] public LightComponent Sun { get; set; }
         [DataMember(1)] public LightComponent Sky { get; set; }
@@ -68,8 +66,102 @@ namespace TR.Stride.Atmosphere
         [DataMember(204)] public float Exposure { get; set; } = 2.0f;
 
         [DataMember(300)] public bool EnableClouds { get; set; } = true;
-        [DataMember(301)] public float CloudScale { get; set; } = 0.0001f;
-        [DataMember(302)] public float CloudSpeed { get; set; } = 0.01f;
-        [DataMember(303)] public float Cloudiness { get; set; } = 0.8f;
+
+
+        [DataMember(301)] public float CloudCoverage { get; set; } = 0.3f;
+        [DataMember(302)] public float CloudDensity { get; set; } = 1.0f;
+        [DataMember(302)] public float CloudSpeed { get; set; } = 0.05f;
+        [DataMember(302)] public float CloudBasicNoiseScale { get; set; } = 0.3f;
+        [DataMember(302)] public float CloudDetailNoiseScale { get; set; } = 0.6f;
+        [DataMember(302)] public Vector2 CloudWeatherUvScale { get; set; } = new Vector2(0.02f, 0.02f);
+
+        public bool CloudsRenderInCubeMap { get; set; } = true;
+        public int CloudsResolutionDivider { get; set; } = 2;
+        private int _currentResolutionMultiplier = 0;
+        private string[] _resolutionMultipliers = new string[] { "4", "2", "1" };
+
+        internal bool CloudsDither { get; set; } = true;
+        internal int CloudSampleCount = 128;
+        internal float CloudThickness { get; set; } = 10;
+
+        internal bool StepFrameIndex = false;
+        internal int FrameIndex = 0;
+        internal bool ResetReconstruction = false;
+
+        private ChromeTracingProfileWriter _profiler = null;
+
+        public override void Update()
+        {
+            ImGui.Begin("Atmosphere");
+
+            ImGui.Text("Clouds");
+
+            CloudCoverage = SliderFloat("Coverage", CloudCoverage, 0, 1);
+            CloudDensity = SliderFloat("Density", CloudDensity, 0, 1);
+            CloudSpeed = SliderFloat("Speed", CloudSpeed, 0, 1);
+            CloudBasicNoiseScale = SliderFloat("Basic Noise Scale", CloudBasicNoiseScale, 0, 1);
+            CloudDetailNoiseScale = SliderFloat("Detail Noise Scale", CloudDetailNoiseScale, 0, 1);
+            CloudWeatherUvScale = SliderFloat2("Weather UV scale", CloudWeatherUvScale, 0, 1);
+            CloudThickness = SliderFloat("Layer Thickness", CloudThickness, 1, 100);
+
+            ImGui.InputInt("Sample count", ref CloudSampleCount);
+
+            if (ImGui.Combo("Clouds resolution multiplier", ref _currentResolutionMultiplier, _resolutionMultipliers, _resolutionMultipliers.Length))
+            {
+                CloudsResolutionDivider = int.Parse(_resolutionMultipliers[_currentResolutionMultiplier], CultureInfo.InvariantCulture);
+            }
+                
+            var v = CloudsRenderInCubeMap;
+            ImGui.Checkbox("Render in cube map", ref v);
+            CloudsRenderInCubeMap = v;
+
+            v = CloudsDither;
+            ImGui.Checkbox("Dither", ref v);
+            CloudsDither = v;
+
+            if (ImGui.Checkbox("Step Frame Index", ref StepFrameIndex) && StepFrameIndex)
+            {
+                ResetReconstruction = true;
+            }
+
+            if (StepFrameIndex)
+            {
+                if (ImGui.Button("Reset frame index"))
+                {
+                    FrameIndex = 0;
+                    ResetReconstruction = true;
+                }
+                if (ImGui.Button("+")) FrameIndex++;
+            }
+
+            if (_profiler == null)
+            {
+                if (ImGui.Button("Profile frame"))
+                {
+                    _profiler = new ChromeTracingProfileWriter();
+                    _profiler.Start($"profiling_{DateTime.UtcNow.Ticks}.json");
+                }
+            }
+            else
+            {
+                _profiler.Stop();
+                _profiler = null;
+            }
+
+            ImGui.End();
+
+            static float SliderFloat(string text, float value, float min, float max)
+            {
+                ImGui.SliderFloat(text, ref value, min, max);
+                return value;
+            }
+
+            static Vector2 SliderFloat2(string text, Vector2 value, float min, float max)
+            {
+                var v = new System.Numerics.Vector2(value.X, value.Y);
+                ImGui.SliderFloat2(text, ref v, min, max);
+                return new(v.X, v.Y);
+            }
+        }
     }
 }

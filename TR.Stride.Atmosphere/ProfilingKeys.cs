@@ -15,5 +15,8 @@ namespace TR.Stride.Atmosphere
         public static readonly ProfilingKey RayMarching = new ProfilingKey(Atmosphere, "Ray marching");
         public static readonly ProfilingKey CubeMap = new ProfilingKey(Atmosphere, "Cube map");
         public static readonly ProfilingKey CubeMapPreFilter = new ProfilingKey(Atmosphere, "Cube map Pre Filter");
+
+        public static readonly ProfilingKey CloudBasicNoise = new ProfilingKey(Atmosphere, "Cloud basic noise");
+        public static readonly ProfilingKey CloudDetailNoise = new ProfilingKey(Atmosphere, "Cloud detail noise");
     }
 }

@@ -1,15 +1,36 @@
+using Stride.Core.Diagnostics;
 using Stride.Engine;
+using Stride.Games;
+using Stride.Graphics;
+using StrideCommunity.ImGuiDebug;
+using System.Linq;
 
-namespace TR.Stride
+using var game = new CustomGame();
+game.Run();
+
+class CustomGame : Game
 {
-    class TR_StrideApp
+    public override void ConfirmRenderingSettings(bool gameCreation)
     {
-        static void Main(string[] args)
+        base.ConfirmRenderingSettings(gameCreation);
+
+        // Make sure labels are exposed in renderdoc
+        Profiler.EnableAll();
+        GraphicsDeviceManager.DeviceCreationFlags |= DeviceCreationFlags.Debug;
+    }
+
+    protected override void BeginRun()
+    {
+        base.BeginRun();
+
+        // Fix Update order
+        ((GameSystemBase)GameSystems.First(x => x is InputSystem)).UpdateOrder = -2;
+
+        var imGuiSystem = new ImGuiSystem(Services, GraphicsDeviceManager)
         {
-            using (var game = new Game())
-            {
-                game.Run();
-            }
-        }
+            UpdateOrder = -1
+        };
+
+        new HierarchyView(Services);
     }
 }

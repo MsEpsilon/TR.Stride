@@ -1,0 +1,10 @@
+!Texture
+Id: ad8c3b0d-aadf-4aed-8291-5a0b5ebdebb7
+SerializedVersion: {Stride: 2.0.0.0}
+Tags: []
+Source: !file ../Resources/BlueNoise.png
+IsCompressed: false
+Type: !ColorTextureType
+    UseSRgbSampling: false
+    ColorKeyColor: {R: 255, G: 0, B: 255, A: 255}
+GenerateMipmaps: false

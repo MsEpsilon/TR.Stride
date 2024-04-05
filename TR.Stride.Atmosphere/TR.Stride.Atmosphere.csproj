@@ -1,19 +1,28 @@
 <Project Sdk="Microsoft.NET.Sdk">
   <PropertyGroup>
-    <TargetFramework>net6.0</TargetFramework>
+    <TargetFramework>net8.0</TargetFramework>
+	  <ProduceReferenceAssembly>false</ProduceReferenceAssembly>
   </PropertyGroup>
   <ItemGroup>
-    <PackageReference Include="Stride.Engine" Version="4.1.0.1" PrivateAssets="contentfiles;analyzers" />
-    <PackageReference Include="Stride.Video" Version="4.1.0.1" PrivateAssets="contentfiles;analyzers" />
-    <PackageReference Include="Stride.Physics" Version="4.1.0.1" PrivateAssets="contentfiles;analyzers" />
-    <PackageReference Include="Stride.Navigation" Version="4.1.0.1" PrivateAssets="contentfiles;analyzers" />
-    <PackageReference Include="Stride.Particles" Version="4.1.0.1" PrivateAssets="contentfiles;analyzers" />
-    <PackageReference Include="Stride.UI" Version="4.1.0.1" PrivateAssets="contentfiles;analyzers" />
-    <PackageReference Include="Stride.Core" Version="4.1.0.1" PrivateAssets="contentfiles;analyzers" />
-    <PackageReference Include="Stride.Core.Assets.CompilerApp" Version="4.1.0.1" PrivateAssets="contentfiles;analyzers" IncludeAssets="build" />
+    <PackageReference Include="Stride.Engine" Version="4.2.0.1" PrivateAssets="contentfiles;analyzers" />
+    <PackageReference Include="Stride.Video" Version="4.2.0.1" PrivateAssets="contentfiles;analyzers" />
+    <PackageReference Include="Stride.Physics" Version="4.2.0.1" PrivateAssets="contentfiles;analyzers" />
+    <PackageReference Include="Stride.Navigation" Version="4.2.0.1" PrivateAssets="contentfiles;analyzers" />
+    <PackageReference Include="Stride.Particles" Version="4.2.0.1" PrivateAssets="contentfiles;analyzers" />
+    <PackageReference Include="Stride.UI" Version="4.2.0.1" PrivateAssets="contentfiles;analyzers" />
+    <PackageReference Include="Stride.Core" Version="4.2.0.1" PrivateAssets="contentfiles;analyzers" />
+    <PackageReference Include="Stride.Core.Assets.CompilerApp" Version="4.2.0.1" PrivateAssets="contentfiles;analyzers" IncludeAssets="build" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\ThirdParty\StrideCommunity.ImGuiDebug\StrideCommunity.ImGuiDebug.csproj" />
   </ItemGroup>
   <ItemGroup>
     <Compile Update="Effects\AtmosphereCommon.sdsl.cs">
+      <DesignTime>True</DesignTime>
+      <DesignTimeSharedInput>True</DesignTimeSharedInput>
+      <AutoGen>True</AutoGen>
+    </Compile>
+    <Compile Update="Effects\AtmosphereForwardRender.sdsl.cs">
       <DesignTime>True</DesignTime>
       <DesignTimeSharedInput>True</DesignTimeSharedInput>
       <AutoGen>True</AutoGen>
@@ -53,7 +62,6 @@
       <DesignTime>True</DesignTime>
       <DesignTimeSharedInput>True</DesignTimeSharedInput>
       <AutoGen>True</AutoGen>
-      <DependentUpon>AtmosphereParametersBase.sdsl</DependentUpon>
     </Compile>
     <Compile Update="Effects\AtmosphereRender.sdfx.cs">
       <DesignTime>True</DesignTime>
@@ -77,12 +85,6 @@
       <AutoGen>True</AutoGen>
       <DependentUpon>AtmosphereRenderSkyRayMarching.sdsl</DependentUpon>
     </Compile>
-    <Compile Update="Effects\AtmosphereForwardRender.sdsl.cs">
-      <DesignTime>True</DesignTime>
-      <DesignTimeSharedInput>True</DesignTimeSharedInput>
-      <AutoGen>True</AutoGen>
-      <DependentUpon>AtmosphereForwardRender.sdsl</DependentUpon>
-    </Compile>
     <Compile Update="Effects\AtmosphereRenderSkyViewLut.sdsl.cs">
       <DesignTime>True</DesignTime>
       <DesignTimeSharedInput>True</DesignTimeSharedInput>
@@ -98,10 +100,48 @@
       <DesignTimeSharedInput>True</DesignTimeSharedInput>
       <AutoGen>True</AutoGen>
     </Compile>
+    <Compile Update="Effects\BlueNoise.sdsl.cs">
+      <DesignTime>True</DesignTime>
+      <DesignTimeSharedInput>True</DesignTimeSharedInput>
+      <AutoGen>True</AutoGen>
+    </Compile>
+    <Compile Update="Effects\CloudBasicNoise.sdsl.cs">
+      <DesignTime>True</DesignTime>
+      <DesignTimeSharedInput>True</DesignTimeSharedInput>
+      <AutoGen>True</AutoGen>
+    </Compile>
+    <Compile Update="Effects\CloudDetailNoise.sdsl.cs">
+      <DesignTime>True</DesignTime>
+      <DesignTimeSharedInput>True</DesignTimeSharedInput>
+      <AutoGen>True</AutoGen>
+    </Compile>
+    <Compile Update="Effects\CloudRayMarching.sdsl.cs">
+      <DesignTime>True</DesignTime>
+      <DesignTimeSharedInput>True</DesignTimeSharedInput>
+      <AutoGen>True</AutoGen>
+    </Compile>
+    <Compile Update="Effects\CloudReconstruct.sdsl.cs">
+      <DesignTime>True</DesignTime>
+      <DesignTimeSharedInput>True</DesignTimeSharedInput>
+      <AutoGen>True</AutoGen>
+    </Compile>
+    <Compile Update="Effects\Noise.sdsl.cs">
+      <DesignTime>True</DesignTime>
+      <DesignTimeSharedInput>True</DesignTimeSharedInput>
+      <AutoGen>True</AutoGen>
+    </Compile>
+    <Compile Update="Effects\TextureHelper.sdsl.cs">
+      <DesignTime>True</DesignTime>
+      <DesignTimeSharedInput>True</DesignTimeSharedInput>
+      <AutoGen>True</AutoGen>
+    </Compile>
   </ItemGroup>
   <ItemGroup>
     <None Update="Effects\AtmosphereCommon.sdsl">
       <LastGenOutput>AtmosphereCommon.sdsl.cs</LastGenOutput>
+    </None>
+    <None Update="Effects\AtmosphereForwardRender.sdsl">
+      <LastGenOutput>AtmosphereForwardRender.sdsl.cs</LastGenOutput>
     </None>
     <None Update="Effects\AtmosphereForwardShadingEffect.sdfx">
       <LastGenOutput>AtmosphereForwardShadingEffect.sdfx.cs</LastGenOutput>
@@ -136,9 +176,6 @@
     <None Update="Effects\AtmosphereRenderSkyRayMarching.sdsl">
       <LastGenOutput>AtmosphereRenderSkyRayMarching.sdsl.cs</LastGenOutput>
     </None>
-    <None Update="Effects\AtmosphereForwardRender.sdsl">
-      <LastGenOutput>AtmosphereForwardRender.sdsl.cs</LastGenOutput>
-    </None>
     <None Update="Effects\AtmosphereRenderSkyViewLut.sdsl">
       <LastGenOutput>AtmosphereRenderSkyViewLut.sdsl.cs</LastGenOutput>
     </None>
@@ -147,6 +184,27 @@
     </None>
     <None Update="Effects\AtmosphereSamplers.sdsl">
       <LastGenOutput>AtmosphereSamplers.sdsl.cs</LastGenOutput>
+    </None>
+    <None Update="Effects\BlueNoise.sdsl">
+      <LastGenOutput>BlueNoise.sdsl.cs</LastGenOutput>
+    </None>
+    <None Update="Effects\CloudBasicNoise.sdsl">
+      <LastGenOutput>CloudBasicNoise.sdsl.cs</LastGenOutput>
+    </None>
+    <None Update="Effects\CloudDetailNoise.sdsl">
+      <LastGenOutput>CloudDetailNoise.sdsl.cs</LastGenOutput>
+    </None>
+    <None Update="Effects\CloudRayMarching.sdsl">
+      <LastGenOutput>CloudRayMarching.sdsl.cs</LastGenOutput>
+    </None>
+    <None Update="Effects\CloudReconstruct.sdsl">
+      <LastGenOutput>CloudReconstruct.sdsl.cs</LastGenOutput>
+    </None>
+    <None Update="Effects\Noise.sdsl">
+      <LastGenOutput>Noise.sdsl.cs</LastGenOutput>
+    </None>
+    <None Update="Effects\TextureHelper.sdsl">
+      <LastGenOutput>TextureHelper.sdsl.cs</LastGenOutput>
     </None>
   </ItemGroup>
 </Project>

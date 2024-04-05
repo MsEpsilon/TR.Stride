@@ -1,17 +1,19 @@
 <Project Sdk="Microsoft.NET.Sdk">
   <PropertyGroup>
-    <TargetFramework>net6.0</TargetFramework>
+    <TargetFramework>net8.0</TargetFramework>
   </PropertyGroup>
   <ItemGroup>
-    <PackageReference Include="Stride.Engine" Version="4.1.0.1" />
-    <PackageReference Include="Stride.Video" Version="4.1.0.1" />
-    <PackageReference Include="Stride.Physics" Version="4.1.0.1" />
-    <PackageReference Include="Stride.Navigation" Version="4.1.0.1" />
-    <PackageReference Include="Stride.Particles" Version="4.1.0.1" />
-    <PackageReference Include="Stride.UI" Version="4.1.0.1" />
-    <PackageReference Include="Stride.Core.Assets.CompilerApp" Version="4.1.0.1" IncludeAssets="build;buildTransitive" />
+    <PackageReference Include="Stride.Engine" Version="4.2.0.1" />
+    <PackageReference Include="Stride.Video" Version="4.2.0.1" />
+    <PackageReference Include="Stride.Physics" Version="4.2.0.1" />
+    <PackageReference Include="Stride.Navigation" Version="4.2.0.1" />
+    <PackageReference Include="Stride.Particles" Version="4.2.0.1" />
+    <PackageReference Include="Stride.UI" Version="4.2.0.1" />
+    <PackageReference Include="Stride.Core.Assets.CompilerApp" Version="4.2.0.1" IncludeAssets="build;buildTransitive" />
+    <PackageReference Include="Stride.Voxels" Version="4.2.0.1" />
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="..\ThirdParty\StrideCommunity.ImGuiDebug\StrideCommunity.ImGuiDebug.csproj" />
     <ProjectReference Include="..\TR.Stride.Atmosphere\TR.Stride.Atmosphere.csproj" />
     <ProjectReference Include="..\TR.Stride.Ocean\TR.Stride.Ocean.csproj" />
     <ProjectReference Include="..\TR.Stride.Gameplay\TR.Stride.Gameplay.csproj" />

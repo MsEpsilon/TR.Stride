@@ -1,17 +1,18 @@
-﻿
-
-shader AtmosphereFullscreenTriangle : ShaderBase
+﻿namespace TR.Stride.Atmosphere
 {
-    stage stream uint VertexId : SV_VERTEXID;
-    stream nointerpolation uint SliceId;
-    
-    stage override void VSMain()
+    shader AtmosphereFullscreenTriangle : ShaderBase
     {
-        float2 uv = float2(-1, -1);
-        uv = streams.VertexId == 1 ? float2(-1.0f, 3.0f) : uv;
-        uv = streams.VertexId == 2 ? float2(3.0f, -1.0f) : uv;
+        stage stream uint VertexId : SV_VERTEXID;
+        stream nointerpolation uint SliceId;
+    
+        stage override void VSMain()
+        {
+            float2 uv = float2(-1, -1);
+            uv = streams.VertexId == 1 ? float2(-1.0f, 3.0f) : uv;
+            uv = streams.VertexId == 2 ? float2(3.0f, -1.0f) : uv;
 
-        streams.ShadingPosition = float4(uv, 0, 1);
-        streams.SliceId = streams.InstanceID;
-    }
-};
+            streams.ShadingPosition = float4(uv, 0, 1);
+            streams.SliceId = streams.InstanceID;
+        }
+    };
+}

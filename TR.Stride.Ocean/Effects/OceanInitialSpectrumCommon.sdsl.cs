@@ -21,7 +21,7 @@ namespace TR.Stride.Ocean
         public static readonly ObjectParameterKey<Texture> H0 = ParameterKeys.NewObject<Texture>();
         public static readonly ObjectParameterKey<Texture> WavesData = ParameterKeys.NewObject<Texture>();
         public static readonly ObjectParameterKey<Texture> H0K = ParameterKeys.NewObject<Texture>();
-        public static readonly ObjectParameterKey<Texture> Noise = ParameterKeys.NewObject<Texture>();
+        public static readonly ObjectParameterKey<Texture> NoiseTexture = ParameterKeys.NewObject<Texture>();
         public static readonly ValueParameterKey<uint> Size = ParameterKeys.NewValue<uint>();
         public static readonly ValueParameterKey<float> LengthScale = ParameterKeys.NewValue<float>();
         public static readonly ValueParameterKey<float> CutoffHigh = ParameterKeys.NewValue<float>();

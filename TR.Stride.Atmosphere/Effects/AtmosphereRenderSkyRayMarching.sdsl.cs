@@ -14,14 +14,11 @@ using Stride.Shaders;
 using Stride.Core.Mathematics;
 using Buffer = Stride.Graphics.Buffer;
 
-namespace Stride.Rendering
+namespace TR.Stride.Atmosphere
 {
     public static partial class AtmosphereRenderSkyRayMarchingKeys
     {
-        public static readonly ValueParameterKey<float> Time = ParameterKeys.NewValue<float>(0.0f);
-        public static readonly ValueParameterKey<float> CloudScale = ParameterKeys.NewValue<float>(0.0001f);
-        public static readonly ValueParameterKey<float> CloudSpeed = ParameterKeys.NewValue<float>(0.1f);
-        public static readonly ValueParameterKey<float> Cloudiness = ParameterKeys.NewValue<float>(0.8f);
-        public static readonly ValueParameterKey<float> Exposure = ParameterKeys.NewValue<float>(2.0f);
+        public static readonly ValueParameterKey<bool> RenderClouds = ParameterKeys.NewValue<bool>();
+        public static readonly ValueParameterKey<Vector2> CloudsTextureSize = ParameterKeys.NewValue<Vector2>();
     }
 }

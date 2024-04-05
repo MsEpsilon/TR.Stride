@@ -86,7 +86,7 @@ namespace TR.Stride.Ocean
 
             initialSpectrumShader.Parameters.Set(OceanInitialSpectrumCommonKeys.H0K, _buffer);
             initialSpectrumShader.Parameters.Set(OceanInitialSpectrumCommonKeys.WavesData, PrecomputedData);
-            initialSpectrumShader.Parameters.Set(OceanInitialSpectrumCommonKeys.Noise, GaussianNoise);
+            initialSpectrumShader.Parameters.Set(OceanInitialSpectrumCommonKeys.NoiseTexture, GaussianNoise);
 
             initialSpectrumShader.ThreadGroupCounts = new Int3(_size / LOCAL_WORK_GROUPS_X, _size / LOCAL_WORK_GROUPS_Y, 1);
             initialSpectrumShader.ThreadNumbers = new Int3(LOCAL_WORK_GROUPS_X, LOCAL_WORK_GROUPS_Y, 1);

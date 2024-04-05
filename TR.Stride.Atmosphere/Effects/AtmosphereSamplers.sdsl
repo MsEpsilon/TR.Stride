@@ -1,10 +1,13 @@
-﻿shader AtmosphereSamplers
+﻿namespace TR.Stride.Atmosphere
 {
-    stage SamplerState SamplerLinearClamp
-	{
-        Filter = MIN_MAG_MIP_LINEAR;
-        AddressU = Clamp;
-        AddressV = Clamp;
-		AddressW = Clamp;
+    shader AtmosphereSamplers
+    {
+        stage SamplerState SamplerLinearClamp
+	    {
+            Filter = MIN_MAG_MIP_LINEAR;
+            AddressU = Clamp;
+            AddressV = Clamp;
+		    AddressW = Clamp;
+        };
     };
-};
+}

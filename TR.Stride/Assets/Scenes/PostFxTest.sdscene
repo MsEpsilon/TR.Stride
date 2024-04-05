@@ -154,6 +154,7 @@ Hierarchy:
                         MieScaleHeight: 1.2
                         GroundAlbedo: {R: 0.1125, G: 0.1125, B: 0.1125}
                         SunLuminanceFactor: 20.0
+                        SunSize: 0.99996
                         RenderSunDisk: true
                         AerialPerspectiveDistanceScale: 100.0
                         StrideToAtmosphereUnitScale: 0.001
@@ -164,4 +165,3 @@ Hierarchy:
                         CloudScale: 0.0001
                         CloudSpeed: 0.01
                         Cloudiness: 0.8
-                        CloudTexture: null

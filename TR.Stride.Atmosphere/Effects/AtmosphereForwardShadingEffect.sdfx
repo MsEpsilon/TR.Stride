@@ -1,15 +1,18 @@
-﻿params AtmosphereForwardShadingEffectParameters
+﻿namespace TR.Stride.Atmosphere
 {
-    bool RenderAerialPerspective = false;
-}
+    params AtmosphereForwardShadingEffectParameters
+    {
+        bool RenderAerialPerspective = false;
+    }
 
-// Forward shading effect to provide support for transparent materials
-effect AtmosphereForwardShadingEffect
-{
-    using params AtmosphereForwardShadingEffectParameters;
+    // Forward shading effect to provide support for transparent materials
+    effect AtmosphereForwardShadingEffect
+    {
+        using params AtmosphereForwardShadingEffectParameters;
 
-    mixin StrideForwardShadingEffect;
+        mixin StrideForwardShadingEffect;
 
-    if (AtmosphereForwardShadingEffectParameters.RenderAerialPerspective)
-        mixin AtmosphereForwardRender;
+        if (AtmosphereForwardShadingEffectParameters.RenderAerialPerspective)
+            mixin AtmosphereForwardRender;
+    }
 }

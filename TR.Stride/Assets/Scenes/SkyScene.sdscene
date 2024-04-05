@@ -1,0 +1,298 @@
+!SceneAsset
+Id: 724685fe-617d-40b4-a86d-91cfdd791d59
+SerializedVersion: {Stride: 3.1.0.1}
+Tags: []
+ChildrenIds: []
+Offset: {X: 0.0, Y: 0.0, Z: 0.0}
+Hierarchy:
+    RootParts:
+        - ref!! bca995a3-6deb-43fa-8ec7-e2e7834da688
+        - ref!! b02e2e47-9fe1-4826-b601-596efcbfb23e
+        - ref!! 31812efd-653f-49b4-85f5-e7003cc876b5
+        - ref!! 3daa5ae1-b025-4699-a664-be3814db9e8b
+        - ref!! e7bf26c9-47ff-4979-bb26-3296b999d6f2
+        - ref!! c9615683-6f6f-41ab-9516-070e321ba385
+        - ref!! 2ef662d4-b2af-460a-af81-49c4b89065fe
+    Parts:
+        -   Folder: null
+            Entity:
+                Id: 0d5f1f24-8976-4f9c-ab97-4acb4aed99cc
+                Name: CameraTarget
+                Components:
+                    9e22dbfcb04892b7a646fb4c67c2643e: !TransformComponent
+                        Id: d3c510ac-f4dd-455c-88f0-5841e1a56850
+                        Position: {X: 0.0, Y: 1.65, Z: 0.0}
+                        Rotation: {X: -0.16715412, Y: -0.55716217, Z: -0.1156718, W: 0.80513966}
+                        Scale: {X: 1.0, Y: 1.0, Z: 1.0}
+                        Children:
+                            88c080ecdaa8193391091dd10843668c: ref!! 814e825f-71ba-43a7-a79d-f3326cac7b6f
+        -   Entity:
+                Id: 2ef662d4-b2af-460a-af81-49c4b89065fe
+                Name: Player
+                Components:
+                    cce77eae34a7ae7b440f4f14e910a6a9: !TransformComponent
+                        Id: 9dfe6510-c4d1-4fc6-8bcb-0f9b83872964
+                        Position: {X: 74.585, Y: 122.18572, Z: -469.922}
+                        Rotation: {X: 0.0, Y: 0.0, Z: 0.0, W: 1.0}
+                        Scale: {X: 1.0, Y: 1.0, Z: 1.0}
+                        Children:
+                            1f9f36141da90f856b1433a23fb4e243: ref!! 2900cef8-64da-416f-8edb-0f716748a505
+                            27308b6f73c8ea3cde469514649a512a: ref!! d3c510ac-f4dd-455c-88f0-5841e1a56850
+                    ea50be9e6e544aba12c5eb953ab708d9: !TR.Stride.Player.PlayerController,TR.Stride
+                        Id: 56b590f6-e466-4413-beb9-ce688b762f2a
+                        MaxRunSpeed: 10.0
+                        JumpReactionThreshold: 0.3
+                    dcb0e60d371754533375a404fee34028: !TR.Stride.Player.PlayerInput,TR.Stride
+                        Id: 0c8bfc8b-9dba-496e-b7e5-ab115a1494d3
+                        MouseSensitivity: 100.0
+                        DeadZone: 0.25
+                        Camera: ref!! d8f929f7-f1ed-4ad0-b67c-86e607caf321
+                        KeysLeft:
+                            305fe87689aad143d324f72a42377cd0: A
+                        KeysRight:
+                            e6f83c43ed43bc83aacf108e1ea9b2ad: D
+                        KeysUp:
+                            fb2c7a85906a69cd0a710a7fa8c01fd1: W
+                        KeysDown:
+                            f8c23fa9c2613f0ad56c848d244765c7: S
+                        KeysJump:
+                            e6079777a4ee960016a4efd0a93d63f2: Space
+                    090705a20844bb4155b0e27a8b4c48d1: !CharacterComponent
+                        Id: e1a3bb56-155a-437e-b96d-6346563a6bbe
+                        CanSleep: false
+                        Restitution: 0.0
+                        Friction: 0.5
+                        RollingFriction: 0.0
+                        CcdMotionThreshold: 0.0
+                        CcdSweptSphereRadius: 0.0
+                        FallSpeed: 10.0
+                        MaxSlope: {Radians: 0.7853982}
+                        JumpSpeed: 13.0
+                        Gravity: {X: 0.0, Y: -40.0, Z: 0.0}
+                        ColliderShapes:
+                            bbe81edce5a1321fb735c82821e39409: !CapsuleColliderShapeDesc
+                                Length: 1.2
+                                Radius: 0.4
+                                LocalOffset: {X: 0.0, Y: 0.95, Z: 0.0}
+                                LocalRotation: {X: 0.0, Y: 0.0, Z: 0.0, W: 1.0}
+                    cc3ffc153316db2b480e86d025e2f4c1: !TR.Stride.GameProfiler,TR.Stride
+                        Id: a9073281-8519-4b0a-a620-c9393b19f58d
+                        Enabled: false
+                        TextColor: {R: 144, G: 238, B: 144, A: 255}
+                        RefreshTime: 500.0
+                        SortingMode: ByTime
+                        FilteringMode: GpuEvents
+                        ResultPage: 1
+        -   Folder: Atmosphere
+            Entity:
+                Id: 31812efd-653f-49b4-85f5-e7003cc876b5
+                Name: Ambient
+                Components:
+                    9c5903c3c429ef41687d2eb80c84fca7: !TransformComponent
+                        Id: f7ad72b4-055c-4637-9128-0ad2933d135b
+                        Position: {X: 0.0, Y: 0.0, Z: 0.0}
+                        Rotation: {X: 0.0, Y: 0.0, Z: 0.0, W: 1.0}
+                        Scale: {X: 1.0, Y: 1.0, Z: 1.0}
+                        Children: {}
+                    d59d21e61452c516a71069fff64fe606: !LightComponent
+                        Id: 04f4a81f-a775-4664-9dca-1fad2704ad50
+                        Type: !LightSkybox
+                            Skybox: 22ec7478-64dc-464f-a9b1-8e89110288e9:Skybox
+        -   Entity:
+                Id: 3daa5ae1-b025-4699-a664-be3814db9e8b
+                Name: Terrain Collision
+                Components:
+                    18cd3726713598a8b16121ed1190e967: !TransformComponent
+                        Id: d55387a9-1546-4c31-a845-ee3e580bfffa
+                        Position: {X: -1.0, Y: 128.0, Z: -1.0}
+                        Rotation: {X: 0.0, Y: 0.0, Z: 0.0, W: 1.0}
+                        Scale: {X: 8.0, Y: 1.0, Z: 8.0}
+                        Children: {}
+                    3004ab5fe9cec71445f0a729ad76c967: !StaticColliderComponent
+                        Id: cc468878-4288-418b-8c76-a87e956c9399
+                        CanSleep: false
+                        Restitution: 0.0
+                        Friction: 0.5
+                        RollingFriction: 0.0
+                        CcdMotionThreshold: 0.0
+                        CcdSweptSphereRadius: 0.0
+                        IsTrigger: false
+                        AlwaysUpdateNaviMeshCache: false
+                        ColliderShapes:
+                            70a4bffefa55062692babdf5bab59433: !HeightfieldColliderShapeDesc
+                                HeightStickArraySource: !Stride.Physics.HeightStickArraySourceFromHeightmap,Stride.Physics
+                                    Heightmap: e5255d8a-ac11-4ac0-9db2-1e5d45a47f96:Terrain/Terrain_Heightmap
+                                FlipQuadEdges: false
+                                Centering:
+                                    Enabled: true
+                                    CenterHeight: 0.0
+                                LocalOffset: {X: 0.0, Y: 0.0, Z: 0.0}
+                                LocalRotation: {X: 0.0, Y: 0.0, Z: 0.0, W: 1.0}
+        -   Folder: null
+            Entity:
+                Id: aed69acf-5497-4eca-98c1-00975300f30c
+                Name: Camera
+                Components:
+                    98a39798e410d70f0910d6c9f27d57ac: !TransformComponent
+                        Id: 814e825f-71ba-43a7-a79d-f3326cac7b6f
+                        Position: {X: 0.0, Y: 0.0, Z: 5.0}
+                        Rotation: {X: 0.0, Y: 0.0, Z: 0.0, W: 1.0}
+                        Scale: {X: 1.0, Y: 1.0, Z: 1.0}
+                        Children: {}
+                    b66dd7950f1f71e708dcf771b29841d6: !CameraComponent
+                        Id: d8f929f7-f1ed-4ad0-b67c-86e607caf321
+                        Name: null
+                        Projection: Perspective
+                        FarClipPlane: 2048.0
+                        Slot: d75902e9-539b-4ac1-aaa7-580efc5ac7fd
+                    fba04b6eb36fa689f0fcf40db87bba79: !TR.Stride.Camera.ThirdPersonCamera,TR.Stride
+                        Id: d09d19b7-1b9e-4358-ac06-0bebeab197fe
+                        DefaultDistance: 6.0
+                        MinimumDistance: 0.4
+                        ConeRadius: 1.25
+                        InvertX: false
+                        MinVerticalAngle: -20.0
+                        MaxVerticalAngle: 70.0
+                        InvertY: false
+                        RotationSpeed: 360.0
+                        VerticalSpeed: 65.0
+        -   Folder: Atmosphere
+            Entity:
+                Id: b02e2e47-9fe1-4826-b601-596efcbfb23e
+                Name: Atmosphere
+                Components:
+                    848151c1ce41c1bb81fb3891ee87f3b3: !TransformComponent
+                        Id: 7e1e32ba-f6dc-4699-8ec9-abd7451df764
+                        Position: {X: 0.0, Y: 0.0, Z: 0.0}
+                        Rotation: {X: 0.0, Y: 0.0, Z: 0.0, W: 1.0}
+                        Scale: {X: 1.0, Y: 1.0, Z: 1.0}
+                        Children: {}
+                    b56513fbe6d2496ea31e2ef438f80838: !TR.Stride.Atmosphere.AtmosphereComponent,TR.Stride.Atmosphere
+                        Id: 6c401d0a-8d99-48d4-bcec-c1b83d0398ac
+                        Sun: ref!! 541e9dce-6237-48af-ad3a-19b47bd0275c
+                        Sky: ref!! 04f4a81f-a775-4664-9dca-1fad2704ad50
+                        PlanetRadius: 6360.0
+                        AtmosphereHeight: 100.0
+                        MiePhase: 0.8
+                        MieScatteringScale: 0.00692
+                        MieScatteringCoefficient: {R: 0.5764706, G: 0.5764706, B: 0.5764706}
+                        MieAbsorptionScale: 0.00077
+                        MieAbsorptionCoefficient: {R: 0.5764706, G: 0.5764706, B: 0.5764706}
+                        RayleighScatteringScale: 0.03624
+                        RayleighScatteringCoefficient: {R: 0.16078432, G: 0.37254903, B: 0.9019608}
+                        AbsorptionExctinctionScale: 0.00199
+                        AbsorptionExctinctionCoefficient: {R: 0.3254902, G: 0.94509804, B: 0.043137256}
+                        AbsorptionDensity0LayerWidth: 25.0
+                        AbsorptionDensity0ConstantTerm: -0.6666667
+                        AbsorptionDensity0LinearTerm: 0.06666667
+                        AbsorptionDensity1ConstantTerm: 2.6666667
+                        AbsorptionDensity1LinearTerm: -0.06666667
+                        RayleighScaleHeight: 8.0
+                        MieScaleHeight: 1.2
+                        GroundAlbedo: {R: 0.0, G: 0.0, B: 0.0}
+                        SunLuminanceFactor: 100.0
+                        SunSize: 0.99996
+                        RenderSunDisk: true
+                        AerialPerspectiveDistanceScale: 1.0
+                        StrideToAtmosphereUnitScale: 0.001
+                        MultipleScatteringFactor: 1.0
+                        AtmosphereScatteringVolumeKmPerSlice: 4.0
+                        Exposure: 2.0
+                        EnableClouds: true
+                        CloudCoverage: 0.3
+                        CloudSpeed: 0.01
+                        CloudBasicNoiseScale: 0.3
+                        CloudDetailNoiseScale: 0.6
+                        CloudWeatherUvScale: {X: 0.02, Y: 0.02}
+                        CloudDensity: 1.0
+                        CloudsRenderInCubeMap: true
+                        CloudsResolutionDivider: 4
+        -   Folder: Atmosphere
+            Entity:
+                Id: bca995a3-6deb-43fa-8ec7-e2e7834da688
+                Name: Sun
+                Components:
+                    6ccd660d13d99e9b55ac02402a3d43ea: !TransformComponent
+                        Id: 021bab97-9692-4907-b659-9f158fdd2135
+                        Position: {X: 0.0, Y: 128.0, Z: 0.0}
+                        Rotation: {X: -0.021708757, Y: 0.124857366, Z: -0.016087657, W: 0.9918067}
+                        Scale: {X: 1.0, Y: 1.0, Z: 1.0}
+                        Children: {}
+                    3c7b800cd00ed3e48b50efcdab0505b5: !LightComponent
+                        Id: 541e9dce-6237-48af-ad3a-19b47bd0275c
+                        Type: !AtmosphereLightDirectional
+                            Color: !ColorRgbProvider
+                                Value: {R: 1.0, G: 1.0, B: 1.0}
+                            Shadow: !LightDirectionalShadowMap
+                                Enabled: true
+                                Filter: !LightShadowMapFilterTypePcf {}
+                                Size: XLarge
+                                DepthRange:
+                                    IsAutomatic: false
+                                    ManualMaxDistance: 512.0
+                                PartitionMode: !LightDirectionalShadowMap.PartitionLogarithmic
+                                    PSSMFactor: 0.1
+                                ComputeTransmittance: false
+                                BiasParameters: {}
+                            Atmosphere: ref!! 6c401d0a-8d99-48d4-bcec-c1b83d0398ac
+                        Intensity: 20.0
+        -   Entity:
+                Id: c9615683-6f6f-41ab-9516-070e321ba385
+                Name: Sphere
+                Components:
+                    7a816f735e5eb34d0b9ac48dee457c33: !TransformComponent
+                        Id: 3aeacc77-5dc6-42fc-8c8e-9e883dfd3d5e
+                        Position: {X: 65.710106, Y: 127.29868, Z: -477.47998}
+                        Rotation: {X: 0.0, Y: 0.0, Z: 0.0, W: 1.0}
+                        Scale: {X: 10.0, Y: 10.0, Z: 10.0}
+                        Children: {}
+                    705d376e7174aa69039aa0c526eea7d3: !ModelComponent
+                        Id: a496556c-3c09-4486-b525-e27eedc38141
+                        Model: ae21c795-fe1c-4d96-8218-846c3072cb34:Sphere
+                        Materials:
+                            59f2d071822e80c515558fdc9de6684c~0: 613801b7-2372-4166-a8b8-d802c0d73f73:Sphere Material
+        -   Folder: null
+            Entity:
+                Id: e5d84438-db29-446d-a693-94e81b4bb145
+                Name: mannequinModel
+                Components:
+                    01f7b7a73665aab08748754dbe3e0be5: !TransformComponent
+                        Id: 2900cef8-64da-416f-8edb-0f716748a505
+                        Position: {X: 0.0, Y: 0.0, Z: 0.0}
+                        Rotation: {X: 0.0, Y: 0.0, Z: 0.0, W: 1.0}
+                        Scale: {X: 1.0, Y: 1.0, Z: 1.0}
+                        Children: {}
+                    a96ca4ee56563217ba6a41d9d70fe33b: !ModelComponent
+                        Id: 8fba3d6b-5cbf-48cc-81e8-5cd34bbb154b
+                        Model: 7996862c-6787-4e5a-b906-ae6987cd45a3:Models/mannequinModel
+                        Materials: {}
+                    e8e449e46fc080cbe9795b62e1454f56: !AnimationComponent
+                        Id: c843ace9-1b71-48ca-b785-952b9a437eaa
+                        Animations: {}
+                    0431ee80ec357f610c735e09c0529e8e: !TR.Stride.Player.AnimationController,TR.Stride
+                        Id: be1330a5-70c1-4492-95e9-3e067f9381a2
+                        AnimationComponent: ref!! c843ace9-1b71-48ca-b785-952b9a437eaa
+                        AnimationIdle: 3d736008-899b-4f95-85a6-223362c5b828:Animations/Idle
+                        AnimationWalk: bfd1b57f-4ef0-4321-8923-761934cd930f:Animations/Walk
+                        AnimationRun: 78495b68-a444-4e46-a04f-715d9668023b:Animations/Run
+                        AnimationJumpStart: 2013a40b-20af-48be-bb73-6315ae287a08:Animations/Jump_Start
+                        AnimationJumpMid: 067e4e2c-2316-4ceb-8c6b-bbed0c672ae9:Animations/Jump_Loop
+                        AnimationJumpEnd: 7c99595f-e0b3-4c3c-8129-5c9be8130b0e:Animations/Jump_End
+                        WalkThreshold: 0.25
+                        TimeFactor: 1.0
+        -   Entity:
+                Id: e7bf26c9-47ff-4979-bb26-3296b999d6f2
+                Name: Terrain
+                Components:
+                    80e1b454cd398b1b5a16d4a8597fb610: !TransformComponent
+                        Id: 9f3e8605-ad14-44c1-8cba-5bc8aa38ed0b
+                        Position: {X: 0.0, Y: 128.0, Z: 0.0}
+                        Rotation: {X: 0.0, Y: 0.0, Z: 0.0, W: 1.0}
+                        Scale: {X: 2.0, Y: 1.0, Z: 2.0}
+                        Children: {}
+                    12fc4a1dabadbccc9998a867bb29cc7b: !TerrainComponent
+                        Id: ed8a5f9b-feb3-4867-b778-2a1521ab3334
+                        Material: f7e47621-bcca-4b58-a19a-36efa5ec5831:Terrain/Terrain_material
+                        Heightmap: e5255d8a-ac11-4ac0-9db2-1e5d45a47f96:Terrain/Terrain_Heightmap
+                        Size: 4096.0
+                        CastShadows: true
