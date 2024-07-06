@@ -1,20 +1,14 @@
 ﻿using Stride.Graphics;
 using Stride.Rendering;
 using System;
-using System.Collections.Generic;
-using System.Text;
 using Stride.Core.Mathematics;
 using Stride.Rendering.Lights;
-using Stride.Engine;
 using Stride.Rendering.ComputeEffect;
 using Stride.Core;
-using System.Threading;
-using System.Linq;
 using Stride.Core.Storage;
 using Stride.Rendering.Images;
 using Stride.Rendering.ComputeEffect.LambertianPrefiltering;
 using Stride.Rendering.Skyboxes;
-using Stride.Shaders;
 using Stride.Rendering.ComputeEffect.GGXPrefiltering;
 
 namespace TR.Stride.Atmosphere
@@ -26,7 +20,7 @@ namespace TR.Stride.Atmosphere
         [DataMember, Display("Multiscattering", "Texture Settings")]
         public TextureSettingsSquare MultiScatteringTextureSettings { get; set; } = new TextureSettingsSquare(32, PixelFormat.R16G16B16A16_Float);
         [DataMember, Display("Sky View LUT", "Texture Settings")]
-        public TextureSettings2d SkyViewLutSettings { get; set; } = new TextureSettings2d(192, 108, PixelFormat.R11G11B10_Float);
+        public TextureSettings2d SkyViewLutSettings { get; set; } = new TextureSettings2d(192, 108, PixelFormat.R16G16B16A16_Float);
         [DataMember, Display("Atmosphere scattering volume", "Texture Settings")]
         public TextureSettingsVolume AtmosphereCameraScatteringVolumeSettings { get; set; } = new TextureSettingsVolume(32, 32, PixelFormat.R16G16B16A16_Float);
 
@@ -76,7 +70,7 @@ namespace TR.Stride.Atmosphere
             SortKey = 0; // Render first in transparent queue
 
             _skyViewLutTexture = Texture.New2D(Context.GraphicsDevice, SkyViewLutSettings.Width, SkyViewLutSettings.Height, SkyViewLutSettings.Format, TextureFlags.RenderTarget | TextureFlags.ShaderResource);
-            AtmosphereCameraScatteringVolumeTexture = Texture.New3D(Context.GraphicsDevice, AtmosphereCameraScatteringVolumeSettings.Size, AtmosphereCameraScatteringVolumeSettings.Size, AtmosphereCameraScatteringVolumeSettings.Slices, AtmosphereCameraScatteringVolumeSettings.Format, TextureFlags.RenderTarget | TextureFlags.ShaderResource);
+            AtmosphereCameraScatteringVolumeTexture = Texture.New3D(Context.GraphicsDevice, AtmosphereCameraScatteringVolumeSettings.Size, AtmosphereCameraScatteringVolumeSettings.Size, AtmosphereCameraScatteringVolumeSettings.Slices, AtmosphereCameraScatteringVolumeSettings.Format, TextureFlags.UnorderedAccess | TextureFlags.ShaderResource);
             _multiScatteringTexture = Texture.New2D(Context.GraphicsDevice, MultiScatteringTextureSettings.Size, MultiScatteringTextureSettings.Size, MultiScatteringTextureSettings.Format, TextureFlags.UnorderedAccess | TextureFlags.ShaderResource);
             TransmittanceLutTexture = Texture.New2D(Context.GraphicsDevice, TransmittanceLutSettings.Width, TransmittanceLutSettings.Height, TransmittanceLutSettings.Format, TextureFlags.UnorderedAccess | TextureFlags.RenderTarget | TextureFlags.ShaderResource);
             _atmosphereCubeMapRenderTarget = Texture.New2D(Context.GraphicsDevice, 64, 64, PixelFormat.R16G16B16A16_Float, TextureFlags.RenderTarget | TextureFlags.ShaderResource);
@@ -93,6 +87,7 @@ namespace TR.Stride.Atmosphere
             _renderAtmosphereScatteringVolumePipelineState = new MutablePipelineState(Context.GraphicsDevice);
             _renderAtmosphereScatteringVolumePipelineState.State.SetDefaults();
             _renderAtmosphereScatteringVolumePipelineState.State.PrimitiveType = PrimitiveType.TriangleList;
+            _renderAtmosphereScatteringVolumePipelineState.State.InputElements = [];
 
             _atmosphereLogicalGroupKey = CreateDrawLogicalGroup("Atmosphere");
 
@@ -165,6 +160,7 @@ namespace TR.Stride.Atmosphere
             blendState0.AlphaBlendFunction = BlendFunction.Add;
 
             pipelineState.PrimitiveType = PrimitiveType.TriangleList;
+            pipelineState.InputElements = [];
         }
 
         public override void PrepareEffectPermutationsImpl(RenderDrawContext context)
@@ -258,22 +254,24 @@ namespace TR.Stride.Atmosphere
             commandList.ResourceBarrierTransition(TransmittanceLutTexture, GraphicsResourceState.PixelShaderResource);
 
             // Multi scattering texture
-            using (context.QueryManager.BeginProfile(Color4.Black, ProfilingKeys.MultiScatteringTexture))
-            {
-                commandList.ResourceBarrierTransition(_multiScatteringTexture, GraphicsResourceState.UnorderedAccess);
+            //using (context.QueryManager.BeginProfile(Color4.Black, ProfilingKeys.MultiScatteringTexture))
+            //{
+            //    commandList.ResourceBarrierTransition(_multiScatteringTexture, GraphicsResourceState.UnorderedAccess);
 
-                SetParameters(context.RenderContext, renderView, renderObject.Component, _renderMultipleScatteringTextureEffect.Parameters, null);
+            //    SetParameters(context.RenderContext, renderView, renderObject.Component, _renderMultipleScatteringTextureEffect.Parameters, null);
 
-                _renderMultipleScatteringTextureEffect.Parameters.Set(AtmosphereMultipleScatteringTextureEffectCSKeys.OutputTexture, _multiScatteringTexture);
-                _renderMultipleScatteringTextureEffect.Parameters.Set(AtmosphereCommonKeys.SunIlluminance, new Vector3(1, 1, 1));
-                _renderMultipleScatteringTextureEffect.Parameters.Set(AtmosphereParametersBaseKeys.TransmittanceLutTexture, TransmittanceLutTexture);
+            //    _renderMultipleScatteringTextureEffect.Parameters.Set(AtmosphereMultipleScatteringTextureEffectCSKeys.OutputTexture, _multiScatteringTexture);
+            //    _renderMultipleScatteringTextureEffect.Parameters.Set(AtmosphereCommonKeys.SunIlluminance, new Vector3(1, 1, 1));
+            //    _renderMultipleScatteringTextureEffect.Parameters.Set(AtmosphereParametersBaseKeys.TransmittanceLutTexture, TransmittanceLutTexture);
+            //    _renderMultipleScatteringTextureEffect.Parameters.Set(AtmosphereParameters.MultiScatteringApproximationEnabled, false);
 
-                _renderMultipleScatteringTextureEffect.ThreadGroupCounts = new Int3(_multiScatteringTexture.Width, _multiScatteringTexture.Height, 1);
-                _renderMultipleScatteringTextureEffect.ThreadNumbers = new Int3(1, 1, 64);
+            //    _renderMultipleScatteringTextureEffect.ThreadGroupCounts = new Int3(_multiScatteringTexture.Width, _multiScatteringTexture.Height, 1);
+            //    _renderMultipleScatteringTextureEffect.ThreadNumbers = new Int3(1, 1, 64);
 
-                _renderMultipleScatteringTextureEffect.Draw(context);
-            }
+            //    _renderMultipleScatteringTextureEffect.Draw(context);
+            //}
 
+            commandList.ResourceBarrierTransition(TransmittanceLutTexture, GraphicsResourceState.PixelShaderResource);
             commandList.ResourceBarrierTransition(_multiScatteringTexture, GraphicsResourceState.PixelShaderResource);
 
             // Sky view LUT
@@ -292,15 +290,17 @@ namespace TR.Stride.Atmosphere
             commandList.ResourceBarrierTransition(_skyViewLutTexture, GraphicsResourceState.PixelShaderResource);
 
             // Atmosphere camera scattering volume
-            using (context.QueryManager.BeginProfile(Color4.Black, ProfilingKeys.ScatteringCameraVolume))
-            {
-                RenderAtmosphereCameraScatteringVolume(context, renderView, renderObject.Component);
-            }
+            //using (context.QueryManager.BeginProfile(Color4.Black, ProfilingKeys.ScatteringCameraVolume))
+            //{
+            // TODO: Implement as CS
+            //    RenderAtmosphereCameraScatteringVolume(context, renderView, renderObject.Component);
+            //}
 
             commandList.ResourceBarrierTransition(AtmosphereCameraScatteringVolumeTexture, GraphicsResourceState.PixelShaderResource);
 
             // Render cube map for ambient
-            if (renderObject.Component.Sky != null && renderObject.Component.Sky.Type is LightSkybox lightSkybox && lightSkybox.Skybox != null)
+#if false
+            if (renderObject.Component.Sky != null && renderObject.Component.Sky.Type is LightSkybox lightSkybox && lightSkybox.Skybox?.DiffuseLightingParameters != null && lightSkybox.Skybox?.SpecularLightingParameters != null)
             {
                 using (context.QueryManager.BeginProfile(Color4.Black, ProfilingKeys.CubeMap))
                 {
@@ -332,10 +332,7 @@ namespace TR.Stride.Atmosphere
 
                     lightSkybox.Skybox.DiffuseLightingParameters.Set(SphericalHarmonicsEnvironmentColorKeys.SphericalColors, coefficients);
 
-                    if (_specularRadiancePrefilterGGX == null)
-                    {
-                        _specularRadiancePrefilterGGX = new RadiancePrefilteringGGX(context.RenderContext);
-                    }
+                    _specularRadiancePrefilterGGX ??= new RadiancePrefilteringGGX(context.RenderContext);
 
                     _specularRadiancePrefilterGGX.RadianceMap = _atmosphereCubeMap;
                     _specularRadiancePrefilterGGX.PrefilteredRadiance = _atmosphereCubeMapSpecular;
@@ -355,6 +352,7 @@ namespace TR.Stride.Atmosphere
                     lightSkybox.Skybox.SpecularLightingParameters.Set(SkyboxKeys.CubeMap, _atmosphereCubeMapSpecular);
                 }
             }
+#endif
 
             // Ray march atmosphere render
             using (context.QueryManager.BeginProfile(Color4.Black, ProfilingKeys.RayMarching))

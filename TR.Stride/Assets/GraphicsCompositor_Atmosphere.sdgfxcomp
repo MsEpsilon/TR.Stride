@@ -133,14 +133,14 @@ RenderFeatures:
         SkyViewLutSettings:
             Width: 192
             Height: 108
-            Format: R11G11B10_Float
+            Format: R16G16B16A16_Float
         AtmosphereCameraScatteringVolumeSettings:
             Size: 32
             Slices: 32
             Format: R16G16B16A16_Float
         FastSky: true
         FastAerialPerspectiveEnabled: true
-        DrawDebugTextures: false
+        DrawDebugTextures: true
 SharedRenderers:
     60459475d3a3adaf2d1ba5d99913ca75: !Stride.Rendering.Compositing.ForwardRenderer,Stride.Engine
         Id: 9cf51cec-34b2-4b2b-8609-816bc58fd23b
@@ -165,7 +165,7 @@ SharedRenderers:
         SubsurfaceScatteringBlurEffect: null
         MSAALevel: None
         MSAAResolver: {}
-        BindDepthAsResourceDuringTransparentRendering*: true
+        BindDepthAsResourceDuringTransparentRendering*: false
     d5b2e71c088247e21556decdce138d96: !Stride.Rendering.Compositing.ForwardRenderer,Stride.Engine
         Id: 02046533-dacf-4bc0-a247-6271c78c8940
         Clear:

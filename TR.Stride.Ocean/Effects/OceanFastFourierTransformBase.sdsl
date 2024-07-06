@@ -5,7 +5,9 @@ namespace TR.Stride.Ocean
     shader OceanFastFourierTransformBase : Math
     {
         stage Texture2D<float4> PrecomputedData;
+        [ImageFormat("rg32f")]
         stage RWTexture2D<float2> Buffer0;
+        [ImageFormat("rg32f")]
         stage RWTexture2D<float2> Buffer1;
 
         stage bool PingPong;

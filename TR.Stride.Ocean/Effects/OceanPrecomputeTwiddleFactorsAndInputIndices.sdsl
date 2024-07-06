@@ -4,6 +4,7 @@ namespace TR.Stride.Ocean
 {
     shader OceanPrecomputeTwiddleFactorsAndInputIndices : ComputeShaderBase, OceanFastFourierTransformBase
     {
+        [ImageFormat("rgba32f")]
         stage RWTexture2D<float4> PrecomputeBuffer;
 
         override void Compute()

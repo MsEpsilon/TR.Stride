@@ -1,7 +1,7 @@
 ﻿
 
 shader AtmosphereRenderSkyRayMarching<bool FastSkyEnabled, bool FastAerialPerspectiveEnabled, bool RenderSunDisk, bool MultiScatteringApproximationEnabled, bool EnableClouds, MemberName AtmosphereGroup>
-: ShaderBase, AtmosphereFullscreenTriangle, Math, DepthBase, AtmosphereRenderSkyCommon<MultiScatteringApproximationEnabled, AtmosphereGroup>, AtmosphereGetSunLuminence<RenderSunDisk, AtmosphereGroup>
+: ShaderBase, AtmosphereFullscreenTriangle, Math, AtmosphereRenderSkyCommon<MultiScatteringApproximationEnabled, AtmosphereGroup>, AtmosphereGetSunLuminence<RenderSunDisk, AtmosphereGroup>
 {
 	cbuffer AtmosphereGroup
 	{
@@ -30,11 +30,11 @@ shader AtmosphereRenderSkyRayMarching<bool FastSkyEnabled, bool FastAerialPerspe
 		float3 WorldDir = normalize((HPos.xyz / HPos.w) - CameraPositionWS);
 		float3 WorldPos = (CameraPositionWS * ScaleToSkyUnit + float3(0, Atmosphere.BottomRadius, 0));
 
-		float DepthBufferValue = -1.0;
+		float DepthBufferValue = 1.0;
 
 		float viewHeight = length(WorldPos);
 		float3 L = 0;
-		DepthBufferValue = DepthStencil[pixPos].r;
+		//DepthBufferValue = DepthStencil.Load(int3(pixPos, 0)).r;
 
 		if (FastSkyEnabled || RenderStage == 1)
 		{

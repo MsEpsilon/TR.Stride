@@ -3,8 +3,11 @@ namespace TR.Stride.Ocean
 {
     shader OceanInitialSpectrumCommon : Math
     {
+		[ImageFormat("rgba32f")]
 		stage RWTexture2D<float4> H0;
+		[ImageFormat("rgba32f")]
         stage RWTexture2D<float4> WavesData;
+		[ImageFormat("rg32f")]
         stage RWTexture2D<float2> H0K;
 
         stage Texture2D<float2> Noise;

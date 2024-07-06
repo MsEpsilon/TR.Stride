@@ -112,12 +112,12 @@ namespace TR.Stride.Ocean
                     data.FFT?.Dispose();
                     data.FFT = new FastFourierTransform(renderDrawContext, data.Size, _fastFourierTransformShaders);
 
-                    data.Cascades = new WavesCascade[]
-                    {
+                    data.Cascades =
+                    [
                         new WavesCascade(graphicsDevice, data.Size, data.FFT, data.GaussianNoise),
                         new WavesCascade(graphicsDevice, data.Size, data.FFT, data.GaussianNoise),
                         new WavesCascade(graphicsDevice, data.Size, data.FFT, data.GaussianNoise)
-                    };
+                    ];
 
                     calculateInitials = true;
                 }
@@ -140,10 +140,7 @@ namespace TR.Stride.Ocean
                 }
 
                 // Read back wave data
-                if (data.Readback == null)
-                {
-                    data.Readback = new();
-                }
+                data.Readback ??= new();
 
                 data.Readback.FrameDelayCount = component.DisplacmentReadBackFrameDelay;
                 data.Readback.SetInput(data.Cascades[0].Displacement);
@@ -174,7 +171,7 @@ namespace TR.Stride.Ocean
                         if (materialLod0 == null || materialLod1 == null || materialLod2 == null)
                             data.Materials = null;
                         else
-                            data.Materials = new Material[] { materialLod0, materialLod1, materialLod2 };
+                            data.Materials = [materialLod0, materialLod1, materialLod2];
                     }
                 }
 

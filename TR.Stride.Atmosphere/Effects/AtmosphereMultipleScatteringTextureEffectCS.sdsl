@@ -3,7 +3,8 @@
 shader AtmosphereMultipleScatteringTextureEffectCS<bool MultiScatteringApproximationEnabled, MemberName AtmosphereGroup> 
 	: ComputeShaderBase, AtmosphereRenderSkyCommon<MultiScatteringApproximationEnabled, AtmosphereGroup>
 {
-	stage RWTexture2D<float4>  OutputTexture;
+	[ImageFormat("rgba16f")]
+	stage RWTexture2D<float4> OutputTexture;
 
 	groupshared float3 MultiScatAs1SharedMem[64];
 	groupshared float3 LSharedMem[64];
