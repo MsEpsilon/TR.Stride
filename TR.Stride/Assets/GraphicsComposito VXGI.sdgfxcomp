@@ -190,6 +190,7 @@ SharedRenderers:
         SubsurfaceScatteringBlurEffect: null
         MSAALevel: None
         MSAAResolver: {}
+        BindDepthAsResourceDuringTransparentRendering: false
     34ecb9b2633eacfc439ba8744fe05102: !PostProcessingEffects
         Id: 000fb633-aa81-4efd-a995-374030b4a05f
         Outline:
@@ -259,6 +260,7 @@ SharedRenderers:
         SubsurfaceScatteringBlurEffect: null
         MSAALevel: None
         MSAAResolver: {}
+        BindDepthAsResourceDuringTransparentRendering: false
         BindOpaqueAsResourceDuringTransparentRendering*: true
         VoxelRenderer: !Stride.Rendering.Voxels.VoxelRenderer,Stride.Voxels
             VoxelStages:

@@ -129,7 +129,7 @@ Hierarchy:
                     6ccd660d13d99e9b55ac02402a3d43ea: !TransformComponent
                         Id: 251c7921-c618-4806-b003-da21db30be29
                         Position: {X: 0.0, Y: 128.0, Z: 0.0}
-                        Rotation: {X: -0.19470197, Y: 0.1201245, Z: -0.037660055, W: 0.9727502}
+                        Rotation: {X: -0.10933742, Y: 0.2775306, Z: -0.030879479, W: 0.9539751}
                         Scale: {X: 1.0, Y: 1.0, Z: 1.0}
                         Children: {}
                     3c7b800cd00ed3e48b50efcdab0505b5: !LightComponent
@@ -257,7 +257,7 @@ Hierarchy:
                         WavesSettings:
                             Local:
                                 Scale: 1.0
-                                WindSpeed: 0.5
+                                WindSpeed: 1.0
                                 WindDirection: 90.0
                                 Fetch: 100000.0
                                 SpreadBlend: 1.0
@@ -273,16 +273,21 @@ Hierarchy:
                                 Swell: 1.0
                                 PeakEnhancement: 3.3
                                 ShortWavesFade: 0.01
-                        AlwaysRecalculateInitials: false
+                        AlwaysRecalculateInitials: true
                         Material: !TR.Stride.Ocean.DefaultOceanMaterial,TR.Stride.Ocean
                             SSSColor: {R: 0.1541919, G: 0.8857628, B: 0.990566, A: 1.0}
+                            FoamBiasLOD0: 0.9746
+                            FoamBiasLOD1: 2.0413
+                            FoamScale: 1.0
                             FoamColor: {R: 1.0, G: 1.0, B: 1.0, A: 1.0}
                             ContactFoam: 1.0
                             FoamTexture: null
-                            Color: {R: 0.03457636, G: 0.1229746, B: 0.1981132}
+                            Color: {R: 0.03137255, G: 0.12156863, B: 0.19607843}
                             ShoreColor: {R: 0.03457636, G: 0.1229746, B: 0.1981132}
                             RefractionStrength: 50.0
-                            Sun: null
+                            Albedo: {R: 0.025312498, G: 0.04225445, B: 0.05625}
+                            Extinction: {R: 0.9, G: 0.53474194, B: 0.32062498}
+                            Sun: ref!! 1b0ce0b4-87f4-4f93-bb66-24a5a4f12eaa
                         Mesh: !TR.Stride.Ocean.DefaultOceanMesh,TR.Stride.Ocean {}
         -   Folder: Atmosphere
             Entity:
@@ -327,9 +332,14 @@ Hierarchy:
                         AtmosphereScatteringVolumeKmPerSlice: 0.25
                         Exposure: 1.0
                         EnableClouds: true
-                        CloudScale: 0.0001
-                        CloudSpeed: 0.01
-                        Cloudiness: 0.8
+                        CloudCoverage: 0.3
+                        CloudSpeed: 0.0
+                        CloudBasicNoiseScale: 0.3
+                        CloudDetailNoiseScale: 0.6
+                        CloudWeatherUvScale: {X: 0.02, Y: 0.02}
+                        CloudDensity: 1.0
+                        CloudsRenderInCubeMap: true
+                        CloudsResolutionDivider: 2
         -   Folder: null
             Entity:
                 Id: ca0dad86-f686-4db6-965c-8ac3dd2c48a1

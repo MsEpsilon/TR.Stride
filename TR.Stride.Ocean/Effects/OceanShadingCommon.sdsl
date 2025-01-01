@@ -34,6 +34,9 @@
             [Color] stage float3 ShoreColor = float3(1, 1, 1);
             stage float RefractionStrength = 50;
             stage float RefractionDistanceMultiplier = 0.02f;
+
+            [Color] stage float3 Albedo = float3(0, 0, 0);
+            [Color] stage float3 Extinction = float3(0.7f, 0.3f, 0.1f);
         }
 
         rgroup PerMaterial
@@ -60,5 +63,7 @@
         stage stream float depthVS;
 
         stage stream float jacobian;
+
+        stage stream float3 Transmittance;
     };
 }

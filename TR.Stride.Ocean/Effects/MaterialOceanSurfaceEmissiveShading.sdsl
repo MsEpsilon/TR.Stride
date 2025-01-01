@@ -42,13 +42,16 @@
             float3 emissive = lerp(color * (1 - fresnel), 0, streams.jacobian);
 
             float3 sceneColor = GetOpaqueColor(screenSpaceUv);
+            sceneColor *= streams.Transmittance;
+
+            streams.shadingColor.xyz += sceneColor;
 
             float alpha = saturate(abs(streams.sceneDepthVS - streams.depthVS));
 
             float3 org = streams.shadingColor.xyz;
             float3 result = lerp(sceneColor, org + emissive, smoothstep(0, 1, alpha));
 
-            streams.shadingColor = float4(result, 1);
+            //streams.shadingColor = float4(result, 1);
         }
     };
 }
